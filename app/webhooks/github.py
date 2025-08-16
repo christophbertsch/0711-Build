@@ -113,18 +113,18 @@ def should_complete_run_for_pr(run: Run, pr: dict, webhook_data: dict) -> bool:
     # - Match by repository in run metadata
     # - Use custom tags or identifiers
     
-    if not run.metadata:
+    if not run.run_metadata:
         return False
     
     # Example: match by repository if stored in metadata
-    run_repo = run.metadata.get("repository")
+    run_repo = run.run_metadata.get("repository")
     pr_repo = webhook_data.get("repository", {}).get("full_name")
     
     if run_repo and pr_repo and run_repo == pr_repo:
         return True
     
     # Example: match by branch name if stored in metadata
-    run_branch = run.metadata.get("branch")
+    run_branch = run.run_metadata.get("branch")
     pr_branch = pr.get("head", {}).get("ref")
     
     if run_branch and pr_branch and run_branch == pr_branch:

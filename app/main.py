@@ -101,7 +101,7 @@ async def get_run(run_id: str, db: Session = Depends(get_db)):
         percent=run.percent,
         created_at=run.created_at,
         updated_at=run.updated_at,
-        metadata=run.metadata
+        metadata=run.run_metadata
     )
 
 @app.get("/runs/{run_id}/detail", response_model=RunDetailResponse)
@@ -119,7 +119,7 @@ async def get_run_detail(run_id: str, db: Session = Depends(get_db)):
         percent=run.percent,
         created_at=run.created_at,
         updated_at=run.updated_at,
-        metadata=run.metadata,
+        metadata=run.run_metadata,
         raw=run.raw,
         artifacts=[
             ArtifactResponse(
@@ -160,7 +160,7 @@ async def list_runs(
             percent=run.percent,
             created_at=run.created_at,
             updated_at=run.updated_at,
-            metadata=run.metadata
+            metadata=run.run_metadata
         )
         for run in runs
     ]

@@ -70,7 +70,7 @@ async def start_run(
     run = Run(
         project_id=project_id, 
         status=RunStatus.QUEUED.value, 
-        metadata=metadata
+        run_metadata=metadata
     )
     db.add(run)
     db.commit()
